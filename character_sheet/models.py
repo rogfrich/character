@@ -9,6 +9,9 @@ class Race(models.Model):
 
 class CharacterClass(models.Model):
     name = models.CharField(max_length=50, unique=True)
+    class Meta:
+        verbose_name = "Class"
+        verbose_name_plural = "Classes"
 
 
 class Character(models.Model):
