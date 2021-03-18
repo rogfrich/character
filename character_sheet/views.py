@@ -1,5 +1,11 @@
 from django.shortcuts import render
+from .models import Character
+
 
 # Create your views here.
 def index(request):
-    return render(request, "character_sheet/index.html")
+    character = Character.objects.get(pk=1)
+    context = {
+        "character": character
+    }
+    return render(request, "character_sheet/index.html", context=context)

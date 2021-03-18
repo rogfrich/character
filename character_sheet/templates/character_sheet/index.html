@@ -1,7 +1,7 @@
 {% extends "character_sheet/base.html" %}
 {% block content %}
-    <h1 class="mt-3 mb-3">Character Name</h1>
-    <p>Level 1 Race Class</p>
+    <h1 class="mt-3 mb-3">{{ character.name }}</h1>
+    <p>Level {{ character.level }} {{ character.race }} {{ character.character_class }}</p>
     <div class="accordion accordion-flush" id="characterInfo">
 
         <!-- Abilities and modifiers-->
