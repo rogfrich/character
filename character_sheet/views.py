@@ -17,3 +17,6 @@ def index(request):
         "ability_mod_wis": calculate_ability_mod(character.ability_wis),
     }
     return render(request, "character_sheet/index.html", context=context)
+
+def about(request):
+    return render(request, "character_sheet/about.html")

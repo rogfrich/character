@@ -16,8 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from character_sheet import urls
+from character_sheet.views import about
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(urls))
+    path('', include(urls)),
+    path('about/', about, name="about"),
+
 ]
