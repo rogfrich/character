@@ -1,5 +1,6 @@
 {% extends "character_sheet/base.html" %}
 {% load static %}
+{% load character_sheet_custom_tags %}
 {% block content %}
     <h1 class="mt-3 mb-3">{{ character.name }}</h1>
     <p>Level {{ character.level }} {{ character.race }} {{ character.character_class }}</p>
@@ -31,7 +32,7 @@
                         <tr>
                             <td>CHA</td>
                             <td>{{ character.ability_cha }}</td>
-                            <td>{{ ability_mod_cha }}</td>
+                            <td>{{ ability_mod_cha | format_modifier}}</td>
                             <td>
                                 <button class="btn btn-primary" onclick="roll(20, {{ ability_mod_cha }})">Roll</button>
                             </td>
@@ -40,7 +41,7 @@
                         <tr>
                             <td>CON</td>
                             <td>{{ character.ability_con }}</td>
-                            <td>{{ ability_mod_con }}</td>
+                            <td>{{ ability_mod_con | format_modifier}}</td>
                             <td>
                                 <button class="btn btn-primary" onclick="roll(20, {{ ability_mod_con }})">Roll</button>
                             </td>
@@ -49,7 +50,7 @@
                         <tr>
                             <td>DEX</td>
                             <td>{{ character.ability_dex }}</td>
-                            <td>{{ ability_mod_dex }}</td>
+                            <td>{{ ability_mod_dex | format_modifier}}</td>
                             <td>
                                 <button class="btn btn-primary" onclick="roll(20, {{ ability_mod_dex }})">Roll</button>
                             </td>
@@ -58,7 +59,7 @@
                         <tr>
                             <td>INT</td>
                             <td>{{ character.ability_int }}</td>
-                            <td>{{ ability_mod_int }}</td>
+                            <td>{{ ability_mod_int | format_modifier}}</td>
                             <td>
                                 <button class="btn btn-primary" onclick="roll(20, {{ ability_mod_int }})">Roll</button>
                             </td>
@@ -67,7 +68,7 @@
                         <tr>
                             <td>STR</td>
                             <td>{{ character.ability_str }}</td>
-                            <td>{{ ability_mod_str }}</td>
+                            <td>{{ ability_mod_str | format_modifier}}</td>
                             <td>
                                 <button class="btn btn-primary" onclick="roll(20, {{ ability_mod_str }})">Roll</button>
                             </td>
@@ -76,7 +77,7 @@
                         <tr>
                             <td>WIS</td>
                             <td>{{ character.ability_wis }}</td>
-                            <td>{{ ability_mod_wis }}</td>
+                            <td>{{ ability_mod_wis | format_modifier}}</td>
                             <td>
                                 <button class="btn btn-primary" onclick="roll(20, {{ ability_mod_wis }})">Roll</button>
                             </td>
@@ -118,12 +119,12 @@
                         <tbody>
                         <tr>
                             <td>Armour class</td>
-                            <td>{{ character.armour_class }}</td>
+                            <td>{{ character.armour_class | format_modifier}}</td>
                             <td>N/A</td>
                         </tr>
                         <tr>
                             <td>Initiative</td>
-                            <td>{{ character.initiative }}</td>
+                            <td>{{ character.initiative | format_modifier}}</td>
                             <td>
                                 <button class="btn btn-primary" onclick="roll(20, {{ character.initiative }})">Roll
                                 </button>
@@ -131,12 +132,12 @@
                         </tr>
                         <tr>
                             <td>Proficiency bonus</td>
-                            <td>{{ character.proficiency }}</td>
+                            <td>{{ character.proficiency | format_modifier}}</td>
                             <td>N/A</td>
                         </tr>
                         <tr>
                             <td>Speed</td>
-                            <td>{{ character.speed }}</td>
+                            <td>{{ character.speed }} ft</td>
                             <td>N/A</td>
                         </tr>
                         </tbody>
