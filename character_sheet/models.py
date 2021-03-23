@@ -22,31 +22,6 @@ class CharacterClass(models.Model):
         return self.name
 
 
-class Character(models.Model):
-    # Character info
-    name = models.CharField(max_length=50, unique=True)
-    level = models.IntegerField(default=1)
-    race = models.ForeignKey(Race, on_delete=models.PROTECT)
-    character_class = models.ForeignKey(CharacterClass, on_delete=models.PROTECT)
-
-    # Abilities (NB ability mods are calculated in the view)
-    ability_cha = models.IntegerField(default=8)
-    ability_con = models.IntegerField(default=8)
-    ability_dex = models.IntegerField(default=8)
-    ability_int = models.IntegerField(default=8)
-    ability_str = models.IntegerField(default=8)
-    ability_wis = models.IntegerField(default=8)
-
-    # Stats
-    armour_class = models.IntegerField(default=5)
-    initiative = models.IntegerField(default=2)
-    proficiency = models.IntegerField(default=2)
-    speed = models.IntegerField(default=30)
-
-    def __str__(self):
-        return self.name
-
-
 class WeaponCategory(models.Model):
     name = models.CharField(max_length=30)
 
@@ -89,3 +64,31 @@ class Damage(models.Model):
 
     def __str__(self):
         return f"{self.weapon.name}: {self.damage_type.name.lower()}"
+
+
+class Character(models.Model):
+    # Character info
+    name = models.CharField(max_length=50, unique=True)
+    level = models.IntegerField(default=1)
+    race = models.ForeignKey(Race, on_delete=models.PROTECT)
+    character_class = models.ForeignKey(CharacterClass, on_delete=models.PROTECT)
+
+    # Abilities (NB ability mods are calculated in the view)
+    ability_cha = models.IntegerField(default=8)
+    ability_con = models.IntegerField(default=8)
+    ability_dex = models.IntegerField(default=8)
+    ability_int = models.IntegerField(default=8)
+    ability_str = models.IntegerField(default=8)
+    ability_wis = models.IntegerField(default=8)
+
+    # Stats
+    armour_class = models.IntegerField(default=5)
+    initiative = models.IntegerField(default=2)
+    proficiency = models.IntegerField(default=2)
+    speed = models.IntegerField(default=30)
+
+    # Weapons
+    weapons = models.ManyToManyField(Weapon)
+
+    def __str__(self):
+        return self.name
