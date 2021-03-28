@@ -2,6 +2,8 @@
 {% load static %}
 {% load character_sheet_custom_tags %}
 {% block content %}
+
+
     <h1 class="mt-3 mb-3">{{ character.name }}</h1>
     <p>Level {{ character.level }} {{ character.race }} {{ character.character_class }}</p>
     <div class="accordion accordion-flush" id="characterInfo">
@@ -32,7 +34,7 @@
                         <tr>
                             <td>CHA</td>
                             <td>{{ character.ability_cha }}</td>
-                            <td>{{ ability_mod_cha | format_modifier}}</td>
+                            <td>{{ ability_mod_cha | format_modifier }}</td>
                             <td>
                                 <button class="btn btn-primary" onclick="roll(20, {{ ability_mod_cha }})">Roll</button>
                             </td>
@@ -41,7 +43,7 @@
                         <tr>
                             <td>CON</td>
                             <td>{{ character.ability_con }}</td>
-                            <td>{{ ability_mod_con | format_modifier}}</td>
+                            <td>{{ ability_mod_con | format_modifier }}</td>
                             <td>
                                 <button class="btn btn-primary" onclick="roll(20, {{ ability_mod_con }})">Roll</button>
                             </td>
@@ -50,7 +52,7 @@
                         <tr>
                             <td>DEX</td>
                             <td>{{ character.ability_dex }}</td>
-                            <td>{{ ability_mod_dex | format_modifier}}</td>
+                            <td>{{ ability_mod_dex | format_modifier }}</td>
                             <td>
                                 <button class="btn btn-primary" onclick="roll(20, {{ ability_mod_dex }})">Roll</button>
                             </td>
@@ -59,7 +61,7 @@
                         <tr>
                             <td>INT</td>
                             <td>{{ character.ability_int }}</td>
-                            <td>{{ ability_mod_int | format_modifier}}</td>
+                            <td>{{ ability_mod_int | format_modifier }}</td>
                             <td>
                                 <button class="btn btn-primary" onclick="roll(20, {{ ability_mod_int }})">Roll</button>
                             </td>
@@ -68,7 +70,7 @@
                         <tr>
                             <td>STR</td>
                             <td>{{ character.ability_str }}</td>
-                            <td>{{ ability_mod_str | format_modifier}}</td>
+                            <td>{{ ability_mod_str | format_modifier }}</td>
                             <td>
                                 <button class="btn btn-primary" onclick="roll(20, {{ ability_mod_str }})">Roll</button>
                             </td>
@@ -77,7 +79,7 @@
                         <tr>
                             <td>WIS</td>
                             <td>{{ character.ability_wis }}</td>
-                            <td>{{ ability_mod_wis | format_modifier}}</td>
+                            <td>{{ ability_mod_wis | format_modifier }}</td>
                             <td>
                                 <button class="btn btn-primary" onclick="roll(20, {{ ability_mod_wis }})">Roll</button>
                             </td>
@@ -119,12 +121,12 @@
                         <tbody>
                         <tr>
                             <td>Armour class</td>
-                            <td>{{ character.armour_class | format_modifier}}</td>
+                            <td>{{ character.armour_class | format_modifier }}</td>
                             <td>N/A</td>
                         </tr>
                         <tr>
                             <td>Initiative</td>
-                            <td>{{ character.initiative | format_modifier}}</td>
+                            <td>{{ character.initiative | format_modifier }}</td>
                             <td>
                                 <button class="btn btn-primary" onclick="roll(20, {{ character.initiative }})">Roll
                                 </button>
@@ -132,7 +134,7 @@
                         </tr>
                         <tr>
                             <td>Proficiency bonus</td>
-                            <td>{{ character.proficiency | format_modifier}}</td>
+                            <td>{{ character.proficiency | format_modifier }}</td>
                             <td>N/A</td>
                         </tr>
                         <tr>
@@ -205,31 +207,21 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>Mace</td>
-                            <td>2d6 bludgeoning</td>
-                            <td>4lb</td>
-                            <td>N/A</td>
-                            <td>
-                                <button type="button" class="btn btn-primary">Attack</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Crossbow, light</td>
-                            <td>1d8 piercing</td>
-                            <td>5lb</td>
-                            <td>
-                                <ul class="list-unstyled">
-                                    <li>Ammo (range 80/320)</li>
-                                    <li>loading</li>
-                                    <li>two-handed</li>
 
-                                </ul>
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-primary">Attack</button>
-                            </td>
-                        </tr>
+                        {% for weapon in weapons %}
+                            <tr>
+                                <td>{{ weapon.weapon_object.name }}</td>
+                                <td>
+                                    {% for d in weapon.weapon_damage %}
+                                        {{ d.dice_qty }}d{{ d.dice_type }} {{ d.damage_type }}<br>
+                                    {% endfor %}
+                                </td>
+                                <td>{{ weapon.weapon_object.weight_lbs }}lbs</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        {% endfor %}
+
                         </tbody>
                     </table>
 
